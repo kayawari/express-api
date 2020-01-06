@@ -7,11 +7,8 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 
-app.get('/api/v1', function(req, res){
-    res.json({
-        message: "hello world"
-    });
-});
+const router = require('./routes/v1/');
+app.use('/api/v1', router);
 
 app.listen(port);
 console.log('listen on port ' + port);
