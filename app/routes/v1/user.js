@@ -28,4 +28,12 @@ router.get('/', function (req, res) {
         });
 });
 
+router.get('/:id', function(req, res) {
+    const Userid = req.params.id;
+
+    UserModel.findById(Userid, function (err, user){
+        res.json(user);
+    });
+});
+
 module.exports = router;
