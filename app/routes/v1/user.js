@@ -36,4 +36,26 @@ router.get('/:id', function(req, res) {
     });
 });
 
+router.put('/:id', function(req, res){
+    const Userid = req.params.id;
+
+    UserModel.findById(Userid, function(err, user){
+        if(err){
+            res.send(err);
+        } else {
+            user.name = req.body.name;
+            user.screen_name = req.body.screen_name;
+            user.bio = req.body.bio;
+
+            user.save(function(err){
+                if(err) {
+                    res.send(err);
+                } else {
+                    res.json({message: 'success'});
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;
